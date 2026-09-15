@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "textutils"
+version = "0.1.0"
+description = "a small python library for text operations"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Zakariae El-Bouzidi", email = "zakariae.el-bouzidi@gmail.com"},
+]
+
+[project.urls]
+Homepage = "https://github.com/ZakBZD100/textutils"
+Repository = "https://github.com/ZakBZD100/textutils"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
