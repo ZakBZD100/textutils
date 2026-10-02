@@ -2,7 +2,7 @@
 
 import pytest
 
-from textutils.casing import capitalize_words, snake_case
+from textutils.casing import camel_case, capitalize_words, snake_case
 
 
 class TestCapitalizeWords:
@@ -67,3 +67,39 @@ class TestSnakeCase:
     def test_multiple_words(self):
         """Convert a multi-word string."""
         assert snake_case("Open Source Development") == "open_source_development"
+
+
+class TestCamelCase:
+    """Tests for the camel_case function."""
+
+    def test_simple_string(self):
+        """Convert a space-separated string to camelCase."""
+        assert camel_case("hello world") == "helloWorld"
+
+    def test_hyphenated_string(self):
+        """Convert a hyphenated string to camelCase."""
+        assert camel_case("open-source") == "openSource"
+
+    def test_underscore_string(self):
+        """Convert an underscored string to camelCase."""
+        assert camel_case("hello_world") == "helloWorld"
+
+    def test_single_word(self):
+        """Return a lowercase single word."""
+        assert camel_case("hello") == "hello"
+
+    def test_empty_string(self):
+        """Return an empty string for empty input."""
+        assert camel_case("") == ""
+
+    def test_none_input(self):
+        """Return an empty string for None input."""
+        assert camel_case(None) == ""
+
+    def test_multiple_words(self):
+        """Convert a multi-word string."""
+        assert camel_case("open source development") == "openSourceDevelopment"
+
+    def test_already_camel_case(self):
+        """Leave an already camelCase string unchanged."""
+        assert camel_case("helloWorld") == "helloworld"
