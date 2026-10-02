@@ -39,3 +39,17 @@ def slugify(text):
     while "--" in result:
         result = result.replace("--", "-")
     return result.strip("-")
+
+
+def word_frequency(text):
+    #compte combien de fois chaque mot apparait
+    if text == None or text == "":
+        return {}
+    mots = text.lower().split()
+    freq = {}
+    for mot in mots:
+        if mot in freq:
+            freq[mot] += 1
+        else:
+            freq[mot] = 1
+    return freq
