@@ -1,96 +1,41 @@
-"""Text transformation functions for counting and manipulating strings."""
+"""module de transformation de texte"""
 
 
-def word_count(text: str) -> int:
-    """Count the number of words in a text.
-
-    Words are separated by whitespace characters.
-
-    Args:
-        text: The input text to count words in.
-
-    Returns:
-        The number of words in the text. Returns 0 if text is empty or None.
-
-    Examples:
-        >>> word_count("Hello World")
-        2
-        >>> word_count("")
-        0
-    """
-    if not text or not text.strip():
+def word_count(text):
+    #compte le nombre de mots
+    if text == None or text == "":
         return 0
-    return len(text.split())
+    mots = text.split()
+    return len(mots)
 
 
-def character_count(text: str) -> int:
-    """Count the number of characters in a text.
-
-    Spaces and punctuation are included in the count.
-
-    Args:
-        text: The input text to count characters in.
-
-    Returns:
-        The number of characters in the text. Returns 0 if text is None.
-
-    Examples:
-        >>> character_count("Hello")
-        5
-        >>> character_count("")
-        0
-    """
-    if text is None:
+def character_count(text):
+    #compte les caracteres
+    if text == None:
         return 0
     return len(text)
 
 
-def reverse(text: str) -> str:
-    """Reverse a given text string.
-
-    Args:
-        text: The input text to reverse.
-
-    Returns:
-        The reversed text. Returns an empty string if text is None.
-
-    Examples:
-        >>> reverse("Hello")
-        'olleH'
-        >>> reverse("racecar")
-        'racecar'
-    """
-    if text is None:
+def reverse(text):
+    #inverse le texte
+    if text == None:
         return ""
-    return text[::-1]
+    resultat = ""
+    for i in range(len(text)-1, -1, -1):  #du dernier au premier
+        resultat += text[i]
+    return resultat
 
 
-def slugify(text: str) -> str:
-    """Generate a URL-friendly slug from a text.
-
-    Converts text to lowercase, replaces spaces and special characters
-    with hyphens, and removes consecutive hyphens.
-
-    Args:
-        text: The input text to slugify.
-
-    Returns:
-        A URL-safe slug string. Returns an empty string if text is None.
-
-    Examples:
-        >>> slugify("Hello World")
-        'hello-world'
-        >>> slugify("Open Source Development!")
-        'open-source-development'
-        >>> slugify("  Multiple   Spaces  ")
-        'multiple-spaces'
-    """
-    if text is None:
+def slugify(text):
+    #fait un slug pour les urls
+    if text == None:
         return ""
-    import re
-
-    # Lowercase, replace non-alphanumeric with hyphens, collapse hyphens
-    slug = text.lower().strip()
-    slug = re.sub(r"[^a-z0-9]+", "-", slug)
-    slug = re.sub(r"-{2,}", "-", slug)
-    return slug.strip("-")
+    result = text.lower()
+    #remplace les espaces par des tirets
+    result = result.replace(" ", "-")
+    #enleve les caracteres chelous
+    result = "".join(c for c in result if c.isalnum() or c == "-")
+    #evite les tirets doubles
+    while "--" in result:
+        result = result.replace("--", "-")
+    return result.strip("-")

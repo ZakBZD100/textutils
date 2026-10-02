@@ -1,87 +1,45 @@
-"""Text casing functions for converting between different text formats."""
+"""les fonctions pour la casse du texte"""
 
 
-def capitalize_words(text: str) -> str:
-    """Capitalize the first letter of each word in a text.
-
-    Args:
-        text: The input text to capitalize.
-
-    Returns:
-        The text with the first letter of each word capitalized.
-        Returns an empty string if text is None.
-
-    Examples:
-        >>> capitalize_words("hello world")
-        'Hello World'
-        >>> capitalize_words("open source development")
-        'Open Source Development'
-    """
-    if text is None:
+def capitalize_words(text):
+    #met une majuscule au debut de chaque mot
+    if text == None:
         return ""
+    # j'utilise title() c'est plus simple
     return text.title()
 
 
-def snake_case(text: str) -> str:
-    """Convert a string to snake_case.
-
-    Words are separated by underscores and converted to lowercase.
-    Existing separators (spaces, hyphens, camelCase boundaries) are
-    normalized to underscores.
-
-    Args:
-        text: The input text to convert.
-
-    Returns:
-        The text in snake_case format. Returns an empty string if text is None.
-
-    Examples:
-        >>> snake_case("Hello World")
-        'hello_world'
-        >>> snake_case("hello-world")
-        'hello_world'
-        >>> snake_case("HelloWorld")
-        'hello_world'
-    """
-    if text is None:
+def snake_case(text):
+    #convertit en snake_case (avec des underscores)
+    if text == None:
         return ""
-    # Replace separators and camelCase boundaries with underscores
-    import re
+    result = text.replace("-", " ").replace("_", " ")
+    # gere les majuscules dans les mots
+    mots = []
+    mot = ""
+    for c in result:
+        if c == " ":
+            if mot:
+                mots.append(mot)
+            mot = ""
+        elif c.isupper() and mot:
+            mots.append(mot)
+            mot = c.lower()
+        else:
+            mot += c.lower() if c.isupper() else c
+    if mot:
+        mots.append(mot)
+    return "_".join(mots)
 
-    text = re.sub(r"[\s\-]+", "_", text)
-    text = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", text)
-    text = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", text)
-    return text.lower().strip("_")
 
-
-def camel_case(text: str) -> str:
-    """Convert a string to camelCase.
-
-    The first word is lowercase and subsequent words are capitalized.
-    Existing separators (spaces, hyphens, underscores) are removed.
-
-    Args:
-        text: The input text to convert.
-
-    Returns:
-        The text in camelCase format. Returns an empty string if text is None.
-
-    Examples:
-        >>> camel_case("hello world")
-        'helloWorld'
-        >>> camel_case("open-source development")
-        'openSourceDevelopment'
-        >>> camel_case("hello_world")
-        'helloWorld'
-    """
-    if text is None:
+def camel_case(text):
+    #convertit en camelCase
+    if text == None:
         return ""
-    # Normalize separators to spaces, then title-case and join
-    import re
-
-    words = re.split(r"[\s\-_]+", text.strip())
-    if not words:
+    mots = text.replace("-", " ").replace("_", " ").split()
+    if not mots:
         return ""
-    first = words[0].lower()
-    rest = [w.capitalize() for w in words[1:] if w]
-    return first + "".join(rest)
+    result = mots[0].lower()
+    for m in mots[1:]:
+        result += m.capitalize()
+    return result
