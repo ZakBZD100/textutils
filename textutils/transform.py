@@ -63,3 +63,34 @@ def reverse(text: str) -> str:
     if text is None:
         return ""
     return text[::-1]
+
+
+def slugify(text: str) -> str:
+    """Generate a URL-friendly slug from a text.
+
+    Converts text to lowercase, replaces spaces and special characters
+    with hyphens, and removes consecutive hyphens.
+
+    Args:
+        text: The input text to slugify.
+
+    Returns:
+        A URL-safe slug string. Returns an empty string if text is None.
+
+    Examples:
+        >>> slugify("Hello World")
+        'hello-world'
+        >>> slugify("Open Source Development!")
+        'open-source-development'
+        >>> slugify("  Multiple   Spaces  ")
+        'multiple-spaces'
+    """
+    if text is None:
+        return ""
+    import re
+
+    # Lowercase, replace non-alphanumeric with hyphens, collapse hyphens
+    slug = text.lower().strip()
+    slug = re.sub(r"[^a-z0-9]+", "-", slug)
+    slug = re.sub(r"-{2,}", "-", slug)
+    return slug.strip("-")

@@ -2,7 +2,7 @@
 
 import pytest
 
-from textutils.transform import character_count, reverse, word_count
+from textutils.transform import character_count, reverse, slugify, word_count
 
 
 class TestWordCount:
@@ -83,3 +83,39 @@ class TestReverse:
     def test_with_spaces(self):
         """Preserve spaces when reversing."""
         assert reverse("ab cd") == "dc ba"
+
+
+class TestSlugify:
+    """Tests for the slugify function."""
+
+    def test_simple_string(self):
+        """Convert a simple string to a slug."""
+        assert slugify("Hello World") == "hello-world"
+
+    def test_with_punctuation(self):
+        """Remove punctuation from the slug."""
+        assert slugify("Open Source Development!") == "open-source-development"
+
+    def test_multiple_spaces(self):
+        """Collapse multiple spaces into single hyphens."""
+        assert slugify("  Multiple   Spaces  ") == "multiple-spaces"
+
+    def test_empty_string(self):
+        """Return an empty string for empty input."""
+        assert slugify("") == ""
+
+    def test_none_input(self):
+        """Return an empty string for None input."""
+        assert slugify(None) == ""
+
+    def test_already_slug(self):
+        """Leave an already valid slug unchanged."""
+        assert slugify("hello-world") == "hello-world"
+
+    def test_special_characters(self):
+        """Replace special characters with hyphens."""
+        assert slugify("user@example.com") == "user-example-com"
+
+    def test_numbers(self):
+        """Preserve numbers in the slug."""
+        assert slugify("Python 3.11 Release") == "python-3-11-release"
