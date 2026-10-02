@@ -20,3 +20,35 @@ def capitalize_words(text: str) -> str:
     if text is None:
         return ""
     return text.title()
+
+
+def snake_case(text: str) -> str:
+    """Convert a string to snake_case.
+
+    Words are separated by underscores and converted to lowercase.
+    Existing separators (spaces, hyphens, camelCase boundaries) are
+    normalized to underscores.
+
+    Args:
+        text: The input text to convert.
+
+    Returns:
+        The text in snake_case format. Returns an empty string if text is None.
+
+    Examples:
+        >>> snake_case("Hello World")
+        'hello_world'
+        >>> snake_case("hello-world")
+        'hello_world'
+        >>> snake_case("HelloWorld")
+        'hello_world'
+    """
+    if text is None:
+        return ""
+    # Replace separators and camelCase boundaries with underscores
+    import re
+
+    text = re.sub(r"[\s\-]+", "_", text)
+    text = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", text)
+    text = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", text)
+    return text.lower().strip("_")
