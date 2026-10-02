@@ -52,3 +52,36 @@ def snake_case(text: str) -> str:
     text = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", text)
     text = re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", text)
     return text.lower().strip("_")
+
+
+def camel_case(text: str) -> str:
+    """Convert a string to camelCase.
+
+    The first word is lowercase and subsequent words are capitalized.
+    Existing separators (spaces, hyphens, underscores) are removed.
+
+    Args:
+        text: The input text to convert.
+
+    Returns:
+        The text in camelCase format. Returns an empty string if text is None.
+
+    Examples:
+        >>> camel_case("hello world")
+        'helloWorld'
+        >>> camel_case("open-source development")
+        'openSourceDevelopment'
+        >>> camel_case("hello_world")
+        'helloWorld'
+    """
+    if text is None:
+        return ""
+    # Normalize separators to spaces, then title-case and join
+    import re
+
+    words = re.split(r"[\s\-_]+", text.strip())
+    if not words:
+        return ""
+    first = words[0].lower()
+    rest = [w.capitalize() for w in words[1:] if w]
+    return first + "".join(rest)
