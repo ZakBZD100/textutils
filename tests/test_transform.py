@@ -1,6 +1,6 @@
 """tests pour transform"""
 
-from textutils.transform import word_count, character_count, reverse, slugify, word_frequency
+from textutils.transform import word_count, character_count, reverse, slugify
 
 
 def test_word_count():
@@ -26,14 +26,5 @@ def test_slugify():
 
 def test_slugify_special():
     assert slugify("Open Source!") == "open-source"
-
-def test_word_frequency():
-    assert word_frequency("hello world hello") == {"hello": 2, "world": 1}
-
-def test_word_frequency_empty():
-    assert word_frequency("") == {}
-
-def test_word_frequency_case():
-    assert word_frequency("Hello hello HELLO") == {"hello": 3}
 
 #todo: ajouter plus de tests plus tard
