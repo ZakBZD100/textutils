@@ -39,3 +39,29 @@ def slugify(text):
     while "--" in result:
         result = result.replace("--", "-")
     return result.strip("-")
+
+
+def word_frequency(text):
+    """compte la frequence de chaque mot dans le texte
+
+    Args:
+        text (str): le texte a analyser
+
+    Returns:
+        dict: un dictionnaire mot -> nombre d'apparitions, dans
+        l'ordre de premiere apparition. Les mots sont compares
+        sans tenir compte de la casse et sans ponctuation.
+        Renvoie un dictionnaire vide si le texte est vide ou None.
+
+    Examples:
+        >>> word_frequency("hello world hello")
+        {'hello': 2, 'world': 1}
+    """
+    if text == None or text == "":
+        return {}
+    compte = {}
+    for mot in text.lower().split():
+        mot = "".join(c for c in mot if c.isalnum())
+        if mot:
+            compte[mot] = compte.get(mot, 0) + 1
+    return compte
