@@ -11,6 +11,7 @@ petite librairie python pour manipuler du texte
 - snake_case
 - camelCase
 - faire des slugs pour les urls
+- compter la frequence des mots
 
 ## Installation
 
@@ -21,11 +22,12 @@ pip install textutils
 ## Usage
 
 ```python
-from textutils import word_count, snake_case, slugify
+from textutils import word_count, snake_case, slugify, word_frequency
 
 word_count("Hello World") # 2
 snake_case("Hello World") # hello_world
 slugify("Hello World!") # hello-world
+word_frequency("hello world hello") # {"hello": 2, "world": 1}
 ```
 
 ## Contributing
