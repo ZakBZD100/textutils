@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (session 3)
+
+- tests: cas limites, cas parametres, exceptions attendues
+- couverture de code a 100% avec pytest-cov
+- docstrings NumPy-style sur toute l'API publique
+- package reorganise en sous-packages casing/ et transform/
+- code formate avec black et verifie avec ruff (0 probleme)
+
 ## 0.2.0 (session 2)
 
 - ajoute snake_case, camel_case, slugify

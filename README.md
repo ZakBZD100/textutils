@@ -30,6 +30,15 @@ slugify("Hello World!") # hello-world
 word_frequency("hello world hello") # {"hello": 2, "world": 1}
 ```
 
+## Development
+
+```bash
+pip install -e ".[dev]"
+pytest --cov=textutils
+black .
+ruff check .
+```
+
 ## Contributing
 
 Feel free to make a PR if you want to contribute
