@@ -2,6 +2,23 @@
 
 
 def word_count(text):
+    """Compte le nombre de mots dans le texte.
+
+    Parameters
+    ----------
+    text : str or None
+        Le texte a analyser, ``None`` equivaut a une chaine vide.
+
+    Returns
+    -------
+    int
+        Le nombre de mots separes par des espaces.
+
+    Examples
+    --------
+    >>> word_count("Hello World")
+    2
+    """
     #compte le nombre de mots
     if text == None or text == "":
         return 0
@@ -10,6 +27,23 @@ def word_count(text):
 
 
 def character_count(text):
+    """Compte le nombre de caracteres dans le texte.
+
+    Parameters
+    ----------
+    text : str or None
+        Le texte a analyser, les espaces sont comptes.
+
+    Returns
+    -------
+    int
+        Le nombre de caracteres, 0 si le texte est ``None``.
+
+    Examples
+    --------
+    >>> character_count("Hello")
+    5
+    """
     #compte les caracteres
     if text == None:
         return 0
@@ -17,6 +51,23 @@ def character_count(text):
 
 
 def reverse(text):
+    """Inverse l'ordre des caracteres du texte.
+
+    Parameters
+    ----------
+    text : str or None
+        Le texte a inverser.
+
+    Returns
+    -------
+    str
+        Le texte inverse, chaine vide si le texte est ``None``.
+
+    Examples
+    --------
+    >>> reverse("Hello")
+    'olleH'
+    """
     #inverse le texte
     if text == None:
         return ""
@@ -27,6 +78,27 @@ def reverse(text):
 
 
 def slugify(text):
+    """Transforme le texte en slug utilise pour les urls.
+
+    Le texte est mis en minuscules, les espaces deviennent des
+    tirets, les caracteres non alphanumeriques sont supprimes et
+    les tirets doubles sont reduits a un seul.
+
+    Parameters
+    ----------
+    text : str or None
+        Le texte a transformer.
+
+    Returns
+    -------
+    str
+        Le slug correspondant, chaine vide si le texte est ``None``.
+
+    Examples
+    --------
+    >>> slugify("Open Source!")
+    'open-source'
+    """
     #fait un slug pour les urls
     if text == None:
         return ""
@@ -42,20 +114,25 @@ def slugify(text):
 
 
 def word_frequency(text):
-    """compte la frequence de chaque mot dans le texte
+    """Compte la frequence de chaque mot dans le texte.
 
-    Args:
-        text (str): le texte a analyser
+    Parameters
+    ----------
+    text : str or None
+        Le texte a analyser.
 
-    Returns:
-        dict: un dictionnaire mot -> nombre d'apparitions, dans
-        l'ordre de premiere apparition. Les mots sont compares
-        sans tenir compte de la casse et sans ponctuation.
-        Renvoie un dictionnaire vide si le texte est vide ou None.
+    Returns
+    -------
+    dict
+        Un dictionnaire mot -> nombre d'apparitions, dans l'ordre
+        de premiere apparition. Les mots sont compares sans tenir
+        compte de la casse et sans ponctuation. Renvoie un
+        dictionnaire vide si le texte est vide ou ``None``.
 
-    Examples:
-        >>> word_frequency("hello world hello")
-        {'hello': 2, 'world': 1}
+    Examples
+    --------
+    >>> word_frequency("hello world hello")
+    {'hello': 2, 'world': 1}
     """
     if text == None or text == "":
         return {}
