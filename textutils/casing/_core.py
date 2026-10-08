@@ -1,6 +1,11 @@
 """les fonctions pour la casse du texte"""
 
 
+def _replace_separators(text):
+    """remplace les tirets et underscores par des espaces"""
+    return text.replace("-", " ").replace("_", " ")
+
+
 def capitalize_words(text):
     """Met une majuscule au debut de chaque mot.
 
@@ -20,8 +25,8 @@ def capitalize_words(text):
     >>> capitalize_words("hello world")
     'Hello World'
     """
-    #met une majuscule au debut de chaque mot
-    if text == None:
+    # met une majuscule au debut de chaque mot
+    if text is None:
         return ""
     # j'utilise title() c'est plus simple
     return text.title()
@@ -48,10 +53,10 @@ def snake_case(text):
     >>> snake_case("Hello World")
     'hello_world'
     """
-    #convertit en snake_case (avec des underscores)
-    if text == None:
+    # convertit en snake_case (avec des underscores)
+    if text is None:
         return ""
-    result = text.replace("-", " ").replace("_", " ")
+    result = _replace_separators(text)
     # gere les majuscules dans les mots
     mots = []
     mot = ""
@@ -92,10 +97,10 @@ def camel_case(text):
     >>> camel_case("open source dev")
     'openSourceDev'
     """
-    #convertit en camelCase
-    if text == None:
+    # convertit en camelCase
+    if text is None:
         return ""
-    mots = text.replace("-", " ").replace("_", " ").split()
+    mots = _replace_separators(text).split()
     if not mots:
         return ""
     result = mots[0].lower()

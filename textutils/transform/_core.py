@@ -19,8 +19,8 @@ def word_count(text):
     >>> word_count("Hello World")
     2
     """
-    #compte le nombre de mots
-    if text == None or text == "":
+    # compte le nombre de mots
+    if text is None or text == "":
         return 0
     mots = text.split()
     return len(mots)
@@ -44,8 +44,8 @@ def character_count(text):
     >>> character_count("Hello")
     5
     """
-    #compte les caracteres
-    if text == None:
+    # compte les caracteres
+    if text is None:
         return 0
     return len(text)
 
@@ -68,11 +68,11 @@ def reverse(text):
     >>> reverse("Hello")
     'olleH'
     """
-    #inverse le texte
-    if text == None:
+    # inverse le texte
+    if text is None:
         return ""
     resultat = ""
-    for i in range(len(text)-1, -1, -1):  #du dernier au premier
+    for i in range(len(text) - 1, -1, -1):  # du dernier au premier
         resultat += text[i]
     return resultat
 
@@ -99,15 +99,15 @@ def slugify(text):
     >>> slugify("Open Source!")
     'open-source'
     """
-    #fait un slug pour les urls
-    if text == None:
+    # fait un slug pour les urls
+    if text is None:
         return ""
     result = text.lower()
-    #remplace les espaces par des tirets
+    # remplace les espaces par des tirets
     result = result.replace(" ", "-")
-    #enleve les caracteres chelous
+    # enleve les caracteres chelous
     result = "".join(c for c in result if c.isalnum() or c == "-")
-    #evite les tirets doubles
+    # evite les tirets doubles
     while "--" in result:
         result = result.replace("--", "-")
     return result.strip("-")
@@ -134,7 +134,7 @@ def word_frequency(text):
     >>> word_frequency("hello world hello")
     {'hello': 2, 'world': 1}
     """
-    if text == None or text == "":
+    if text is None or text == "":
         return {}
     compte = {}
     for mot in text.lower().split():

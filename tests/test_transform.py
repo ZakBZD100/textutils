@@ -14,14 +14,14 @@ from textutils.transform import (
 @pytest.mark.parametrize(
     "text,expected",
     [
-        ("Hello World", 2),        # cas normal
-        ("one", 1),                # un seul mot
+        ("Hello World", 2),  # cas normal
+        ("one", 1),  # un seul mot
         ("  hello   world  ", 2),  # espaces en trop
-        ("hello\nworld\t!", 3),    # tabulations et sauts de ligne
-        ("café naïve", 2),         # caracteres accentues
-        ("   ", 0),                # que des espaces
-        ("", 0),                   # chaine vide
-        (None, 0),                 # texte absent
+        ("hello\nworld\t!", 3),  # tabulations et sauts de ligne
+        ("café naïve", 2),  # caracteres accentues
+        ("   ", 0),  # que des espaces
+        ("", 0),  # chaine vide
+        (None, 0),  # texte absent
     ],
 )
 def test_word_count(text, expected):
@@ -32,9 +32,9 @@ def test_word_count(text, expected):
     "text,expected",
     [
         ("Hello", 5),
-        (" ", 1),            # l'espace compte
+        (" ", 1),  # l'espace compte
         ("", 0),
-        ("café", 4),         # les accents comptent aussi
+        ("café", 4),  # les accents comptent aussi
         (None, 0),
     ],
 )
@@ -72,12 +72,12 @@ def test_reverse_wrong_type():
     [
         ("Hello World", "hello-world"),
         ("Open Source!", "open-source"),
-        ("Hello   World", "hello-world"),    # espaces multiples
+        ("Hello   World", "hello-world"),  # espaces multiples
         ("  spaces  everywhere  ", "spaces-everywhere"),
-        ("a---b", "a-b"),                    # tirets multiples
-        ("Déjà Vu!", "déjà-vu"),             # les accents sont gardes
-        ("hello_world", "helloworld"),       # le underscore disparait
-        ("...", ""),                         # rien de valide
+        ("a---b", "a-b"),  # tirets multiples
+        ("Déjà Vu!", "déjà-vu"),  # les accents sont gardes
+        ("hello_world", "helloworld"),  # le underscore disparait
+        ("...", ""),  # rien de valide
         (None, ""),
     ],
 )
@@ -89,15 +89,15 @@ def test_slugify(text, expected):
     "text,expected",
     [
         ("hello world hello", {"hello": 2, "world": 1}),
-        ("Hello hello HELLO", {"hello": 3}),         # ignore la casse
+        ("Hello hello HELLO", {"hello": 3}),  # ignore la casse
         ("hello, world! hello.", {"hello": 2, "world": 1}),  # ponctuation
-        ("hello!!! ???", {"hello": 1}),              # mot sans lettres
-        ("a\n\nb   a", {"a": 2, "b": 1}),            # sauts de ligne
-        ("café café", {"café": 2}),                  # accentues
-        ("1 2 1", {"1": 2, "2": 1}),                 # chiffres
+        ("hello!!! ???", {"hello": 1}),  # mot sans lettres
+        ("a\n\nb   a", {"a": 2, "b": 1}),  # sauts de ligne
+        ("café café", {"café": 2}),  # accentues
+        ("1 2 1", {"1": 2, "2": 1}),  # chiffres
         ("hello", {"hello": 1}),
-        ("   ", {}),                                 # que des espaces
-        ("!!! ???", {}),                             # que de la ponctuation
+        ("   ", {}),  # que des espaces
+        ("!!! ???", {}),  # que de la ponctuation
         ("", {}),
         (None, {}),
     ],
