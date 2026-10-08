@@ -1,22 +1,56 @@
 """tests pour casing"""
 
+import pytest
+
 from textutils.casing import capitalize_words, snake_case, camel_case
 
 
-def test_capitalize():
-    assert capitalize_words("hello world") == "Hello World"
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("hello world", "Hello World"),
+        ("Hello World", "Hello World"),   # deja capitalise
+        ("o'brien", "O'Brien"),           # l'apostrophe est geree
+        ("123abc", "123Abc"),
+        ("déjà vu", "Déjà Vu"),
+        ("", ""),
+        (None, ""),
+    ],
+)
+def test_capitalize_words(text, expected):
+    assert capitalize_words(text) == expected
 
-def test_capitalize_deja():
-    assert capitalize_words("Hello World") == "Hello World"
 
-def test_snake_case():
-    assert snake_case("Hello World") == "hello_world"
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("Hello World", "hello_world"),
+        ("hello-world", "hello_world"),
+        ("hello_world", "hello_world"),
+        ("helloWorld", "hello_world"),     # casse camel en entree
+        ("hello  world", "hello_world"),   # espaces multiples
+        ("  hello  ", "hello"),
+        ("", ""),
+        (None, ""),
+    ],
+)
+def test_snake_case(text, expected):
+    assert snake_case(text) == expected
 
-def test_snake_case_hyphen():
-    assert snake_case("hello-world") == "hello_world"
 
-def test_camel_case():
-    assert camel_case("hello world") == "helloWorld"
-
-def test_camel_case_multiple():
-    assert camel_case("open source dev") == "openSourceDev"
+@pytest.mark.parametrize(
+    "text,expected",
+    [
+        ("hello world", "helloWorld"),
+        ("open source dev", "openSourceDev"),
+        ("Hello World", "helloWorld"),
+        ("hello-world", "helloWorld"),
+        ("hello_world", "helloWorld"),
+        ("hello", "hello"),          # un seul mot
+        ("", ""),
+        ("   ", ""),                 # que des espaces
+        (None, ""),
+    ],
+)
+def test_camel_case(text, expected):
+    assert camel_case(text) == expected
