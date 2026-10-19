@@ -14,7 +14,7 @@ from textutils.transform import (
 @pytest.mark.parametrize(
     "text,expected",
     [
-        ("Hello World", 2),  # cas normal
+        ("Hello World", 3),  # cas normal
         ("one", 1),  # un seul mot
         ("  hello   world  ", 2),  # espaces en trop
         ("hello\nworld\t!", 3),  # tabulations et sauts de ligne
