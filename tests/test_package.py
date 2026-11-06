@@ -19,4 +19,4 @@ def test_all_matches_module_attributes():
 
 
 def test_version_is_exposed():
-    assert textutils.__version__ == "0.3.0"
+    assert textutils.__version__ == "1.0.0"

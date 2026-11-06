@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0 (session 5)
+
+- premiere release publique sur PyPI sous le nom zak-textutils
+- renomme la distribution (textutils etait deja pris sur PyPI)
+- ajoute le workflow de release GitHub Actions
+
 ## 0.3.0 (session 3)
 
 - tests: cas limites, cas parametres, exceptions attendues

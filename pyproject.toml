@@ -3,8 +3,8 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "textutils"
-version = "0.3.0"
+name = "zak-textutils"
+version = "1.0.0"
 description = "a small python library for text operations"
 readme = "README.md"
 license = {text = "MIT"}

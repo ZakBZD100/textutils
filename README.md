@@ -16,7 +16,7 @@ petite librairie python pour manipuler du texte
 ## Installation
 
 ```bash
-pip install textutils
+pip install zak-textutils
 ```
 
 ## Usage
